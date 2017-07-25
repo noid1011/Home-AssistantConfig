@@ -1,0 +1,66 @@
+default_view:
+  view: true
+
+
+
+Network:
+  view: yes
+  entities:
+  - group.hardware
+  - group.media_player
+  - group.switches
+  - group.radio
+
+Media:
+  view: yes
+  entities:
+  - group.media_player
+
+people:
+  entities:
+  - device_tracker.nikphone
+  - device_tracker.michellephone
+  - group.people
+  - group.hive_heating
+
+hardware:
+  entities:
+  - device_tracker.pi3
+  - device_tracker.desktopc6omlop
+  - device_tracker.skyhd
+  - device_tracker.philipshue
+  - device_tracker.chromecast_livingroom
+  - device_tracker.wdmycloud
+  - device_tracker.tv_livingroom
+  - device_tracker.speaker_livingroom
+  - device_tracker.nowtv_livingroom
+  view: false
+  name: hardware
+
+
+hive_heating:
+  name: Hive Heating
+  entities:
+  - sensor.hive_heating_mode
+  - sensor.hive_heating_boost
+  - sensor.hive_heating_state
+  - sensor.hive_hot_water_mode
+  - sensor.hive_hot_water_boost
+  - sensor.hive_hot_water_state
+  - sensor.hive_target_temperature
+  - sensor.hive_current_temperature
+  - sensor.hive_thermostat_battery_level
+  - climate.hive_heating
+  - climate.hive_hotwater
+  - light.hive_active_light
+
+media_player:
+  entities:
+  - media_player.living_room
+
+Radio:
+  name: Radio
+  entities:
+  - input_select.radio_station
+  - input_select.chromecast_radio
+  - script.radio538
