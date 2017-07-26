@@ -67,10 +67,7 @@ sensor:
   - platform: pi_hole
   - platform: yr
   - platform: template
-    sensors:
-      tv_volume:
-        value_template: '{{states.media_player.livingroom_tv.attributes.volume_level}}'
-        friendly_name: 'Living Room Volume'
+  
 #  - platform: mqtt
 #    name: "Porch Door"
 #    state_topic:  "smartthings/Porch Door/temperature measurement"

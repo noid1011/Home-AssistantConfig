@@ -1,0 +1,87 @@
+2017-07-16T21:05:24.667Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-16T21:05:24.682Z - info: Loading configuration
+2017-07-16T21:05:24.685Z - info: No previous configuration found, creating one
+2017-07-16T21:05:24.740Z - info: Loading previous state
+2017-07-16T21:05:24.745Z - info: No previous state found, continuing
+2017-07-16T21:05:24.748Z - info: Perfoming configuration migration
+2017-07-16T21:05:24.778Z - info: Saving current state
+2017-07-16T21:05:24.793Z - info: Connecting to MQTT at mqtt://mqtt
+2017-07-16T21:11:36.013Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-16T21:11:36.028Z - info: Loading configuration
+2017-07-16T21:11:36.032Z - info: No previous configuration found, creating one
+2017-07-16T21:11:36.086Z - info: Loading previous state
+2017-07-16T21:11:36.092Z - info: Perfoming configuration migration
+2017-07-16T21:11:36.124Z - info: Saving current state
+2017-07-16T21:11:36.139Z - info: Connecting to MQTT at mqtt://mqtt
+2017-07-16T21:12:05.437Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-16T21:18:37.803Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-16T21:22:00.061Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-16T21:22:00.076Z - info: Loading configuration
+2017-07-16T21:22:00.128Z - info: Loading previous state
+2017-07-16T21:22:00.134Z - info: Perfoming configuration migration
+2017-07-16T21:22:00.163Z - info: Saving current state
+2017-07-16T21:22:00.180Z - info: Connecting to MQTT at mqtt://192.168.0.250
+2017-07-16T21:22:00.497Z - info: Configuring autosave
+2017-07-16T21:34:45.080Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-16T21:34:45.094Z - info: Loading configuration
+2017-07-16T21:34:45.145Z - info: Loading previous state
+2017-07-16T21:34:45.151Z - info: Perfoming configuration migration
+2017-07-16T21:34:45.180Z - info: Saving current state
+2017-07-16T21:34:45.198Z - info: Connecting to MQTT at mqtt://192.168.0.250
+2017-07-16T21:34:45.368Z - info: Configuring autosave
+2017-07-19T21:26:46.916Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-19T21:26:46.930Z - info: Loading configuration
+2017-07-19T21:26:46.982Z - info: Loading previous state
+2017-07-19T21:26:46.988Z - info: Perfoming configuration migration
+2017-07-19T21:26:47.025Z - info: Saving current state
+2017-07-19T21:26:47.044Z - info: Connecting to MQTT at mqtt://192.168.0.250
+2017-07-19T21:26:47.213Z - info: Configuring autosave
+2017-07-19T21:26:47.221Z - info: Configuring API
+2017-07-19T21:26:47.426Z - info: Listening at http://localhost:8080
+2017-07-19T21:28:45.948Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-19T21:28:45.962Z - info: Loading configuration
+2017-07-19T21:28:46.014Z - info: Loading previous state
+2017-07-19T21:28:46.020Z - info: Perfoming configuration migration
+2017-07-19T21:28:46.050Z - info: Saving current state
+2017-07-19T21:28:46.068Z - info: Connecting to MQTT at mqtt://192.168.0.251
+2017-07-19T21:29:42.446Z - info: Starting SmartThings MQTT Bridge - v1.3.4
+2017-07-19T21:29:42.459Z - info: Loading configuration
+2017-07-19T21:29:42.513Z - info: Loading previous state
+2017-07-19T21:29:42.519Z - info: Perfoming configuration migration
+2017-07-19T21:29:42.548Z - info: Saving current state
+2017-07-19T21:29:42.566Z - info: Connecting to MQTT at mqtt://192.168.0.250
+2017-07-19T21:29:42.729Z - info: Configuring autosave
+2017-07-19T21:29:42.737Z - info: Configuring API
+2017-07-19T21:29:42.934Z - info: Listening at http://localhost:8080
+2017-07-19T21:44:42.771Z - info: Saving current state
+2017-07-19T21:59:42.806Z - info: Saving current state
+2017-07-19T22:14:42.821Z - info: Saving current state
+2017-07-19T22:29:42.826Z - info: Saving current state
+2017-07-19T22:44:42.836Z - info: Saving current state
+2017-07-19T22:59:42.845Z - info: Saving current state
+2017-07-19T23:14:42.851Z - info: Saving current state
+2017-07-19T23:29:42.858Z - info: Saving current state
+2017-07-19T23:44:42.869Z - info: Saving current state
+2017-07-19T23:59:42.876Z - info: Saving current state
+2017-07-20T00:14:42.881Z - info: Saving current state
+2017-07-20T00:29:42.894Z - info: Saving current state
+2017-07-20T00:44:42.908Z - info: Saving current state
+2017-07-20T00:59:42.919Z - info: Saving current state
+2017-07-20T01:14:42.930Z - info: Saving current state
+2017-07-20T01:29:42.939Z - info: Saving current state
+2017-07-20T01:44:42.947Z - info: Saving current state
+2017-07-20T01:59:42.965Z - info: Saving current state
+2017-07-20T02:14:42.972Z - info: Saving current state
+2017-07-20T02:29:42.978Z - info: Saving current state
+2017-07-20T02:44:42.983Z - info: Saving current state
+2017-07-20T02:59:42.988Z - info: Saving current state
+2017-07-20T03:14:42.991Z - info: Saving current state
+2017-07-20T03:29:43.004Z - info: Saving current state
+2017-07-20T03:44:43.017Z - info: Saving current state
+2017-07-20T03:59:43.027Z - info: Saving current state
+2017-07-20T04:14:43.032Z - info: Saving current state
+2017-07-20T04:29:43.041Z - info: Saving current state
+2017-07-20T04:44:43.049Z - info: Saving current state
+2017-07-20T04:59:43.056Z - info: Saving current state
+2017-07-20T05:14:43.062Z - info: Saving current state
+2017-07-20T05:29:43.066Z - info: Saving current state
