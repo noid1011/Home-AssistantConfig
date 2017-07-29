@@ -10,6 +10,8 @@ home-assistant_v2.db
 *.db-journal
 lib
 deps
+state.json
+events.log
 tts
 secrets.yaml 
 known_devices.yaml

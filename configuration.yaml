@@ -32,6 +32,11 @@ frontend:
 # Enables configuration UI
 config:
 
+binary_sensor:
+  - platform: rpi_gpio
+    ports:
+      21: Door Bell
+
 http:
   # Uncomment this to add a password (recommended!)
   # api_password: PASSWORD
@@ -48,7 +53,7 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -62,6 +67,9 @@ logbook:
 # Track the sun
 sun:
 
+mqtt:
+  broker: 192.168.0.250
+
 # Weather Prediction
 sensor:
   - platform: pi_hole
@@ -71,11 +79,11 @@ sensor:
       tv_volume:
         value_template: '{{states.media_player.livingroom_tv.attributes.volume_level}}'
         friendly_name: 'Living Room Volume'
-#  - platform: mqtt
-#    name: "Porch Door"
-#    state_topic:  "smartthings/Porch Door/temperature measurement"
-#    unit_of_measurement: "C"
-#    retain: true
+  - platform: mqtt
+    name: "Porch"
+    state_topic: "smartthings/Porch Door/temperature"
+    unit_of_measurement: "°C"
+    retain: true
 
 media_player:
   - platform: cast
