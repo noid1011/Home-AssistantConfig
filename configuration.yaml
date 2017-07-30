@@ -16,7 +16,10 @@ homeassistant:
       friendly_name: Tune
       icon: mdi:play
     media_player.roku_326673099455:
-      friendly_name: Livingroom NowTV      
+      friendly_name: Livingroom NowTV   
+    binary_sensor.porch_door:
+      device_class: opening
+         
 
 # Show links to resources in log and frontend
 #introduction:
@@ -36,6 +39,12 @@ binary_sensor:
   - platform: rpi_gpio
     ports:
       21: Door Bell
+    pull_mode: down
+  - platform: mqtt
+    state_topic: "smartthings/Porch Door/contact"
+    name: "Porch Door"
+    payload_on: "open"
+    payload_off: "closed"
 
 http:
   # Uncomment this to add a password (recommended!)
@@ -84,6 +93,12 @@ sensor:
     state_topic: "smartthings/Porch Door/temperature"
     unit_of_measurement: "°C"
     retain: true
+  - platform: mqtt
+    name: "Porch Battery"
+    state_topic: "smartthings/Porch Door/battery"
+    unit_of_measurement: "%"
+    retain: true  
+
 
 media_player:
   - platform: cast
@@ -173,8 +188,5 @@ script:
 
 
 
-#group: !include groups.yaml
+group: !include groups.yaml
 automation: !include automations.yaml
-
-
-

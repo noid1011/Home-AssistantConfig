@@ -1,5 +1,5 @@
 default_view:
-  view: true
+#  view: true
 
 
 
@@ -16,14 +16,18 @@ Media:
   entities:
   - group.media_player
 
-people:
+People:
   entities:
   - device_tracker.nikphone
   - device_tracker.michellephone
-  - group.people
-  - group.hive_heating
+#  - group.people
+#  - group.hive_heating
 
-hardware:
+Doors:
+  entities:
+  - binary_sensor.porch_door
+
+Hardware:
   entities:
   - device_tracker.pi3
   - device_tracker.desktopc6omlop
@@ -35,7 +39,7 @@ hardware:
   - device_tracker.speaker_livingroom
   - device_tracker.nowtv_livingroom
   view: false
-  name: hardware
+  name: Hardware
 
 
 hive_heating:
