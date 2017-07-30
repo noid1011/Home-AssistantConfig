@@ -1,33 +1,61 @@
+##########################################
+#
+#  Views
+#
+##########################################
+
 default_view:
-#  view: true
-
-
 
 Network:
   view: yes
   entities:
   - group.hardware
-  - group.media_player
-  - group.switches
-  - group.radio
+  - group.pihole
+  - group.speedtest
 
-Media:
-  view: yes
+#Media:
+#  view: yes
+#  entities:
+  
+
+##########################################
+#
+#  Groups
+#
+##########################################
+
+temperatures:
+  name: Temperatures
   entities:
-  - group.media_player
+  - sensor.hive_current_temperature
+  - sensor.porch_temperature
 
-People:
+
+pihole:
+  name: Pi-hole
+  entities:
+  - sensor.pihole_ads_blocked_today
+  - sensor.pihole_ads_percentage_blocked_today
+  - sensor.pihole_dns_queries_cached
+  - sensor.pihole_dns_queries_forwarded
+  - sensor.pihole_dns_queries_today
+  - sensor.pihole_dns_unique_clients
+  - sensor.pihole_dns_unique_domains
+  - sensor.pihole_domains_blocked
+
+people:
+  name: People
   entities:
   - device_tracker.nikphone
   - device_tracker.michellephone
-#  - group.people
-#  - group.hive_heating
 
-Doors:
+doors:
+  name: Doors
   entities:
   - binary_sensor.porch_door
 
-Hardware:
+hardware:
+  name: Hardware
   entities:
   - device_tracker.pi3
   - device_tracker.desktopc6omlop
@@ -38,9 +66,9 @@ Hardware:
   - device_tracker.tv_livingroom
   - device_tracker.speaker_livingroom
   - device_tracker.nowtv_livingroom
-  view: false
-  name: Hardware
-
+  - device_tracker.bedroom_tv
+  - device_tracker.bt_wifi_link
+  - device_tracker.smartthings_hub
 
 hive_heating:
   name: Hive Heating
@@ -58,13 +86,16 @@ hive_heating:
   - climate.hive_hotwater
   - light.hive_active_light
 
-media_player:
-  entities:
-  - media_player.living_room
-
-Radio:
+radio:
   name: Radio
   entities:
   - input_select.radio_station
   - input_select.chromecast_radio
   - script.radio538
+
+speedtest:
+  name: speedtest
+  entities:
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
