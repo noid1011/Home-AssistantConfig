@@ -17,17 +17,12 @@ homeassistant:
       friendly_name: Livingroom NowTV   
     binary_sensor.porch_door:
       device_class: opening
-    media_player.living_room:
-      friendly_name: Livingroom Speaker
-    binary_sensor.floorplan:
-      custom_ui_state_card: floorplan #/local/custom_ui/state-card-floorplan.html 
-      config: !include floorplan.yaml
          
 
 zone:
   name: Work
-  latitude: !secret my_work_lat
-  longitude: !secret my_work_long
+  latitude: 50.767
+  longitude: -1.582
   radius: 300
 
 # Enables the frontend
@@ -51,18 +46,24 @@ input_boolean:
     icon: mdi:locker
 
 binary_sensor:
+  - platform: rpi_gpio
+    ports:
+      20: Door Bell
+    pull_mode: down
   - platform: mqtt
     state_topic: "smartthings/Porch Door/contact"
     name: "Porch Door"
     payload_on: "open"
     payload_off: "closed"
   - platform: mqtt
-    state_topic: dummy/floorplan/sensor
-    name: Floorplan
+    state_topic: "smartthings/Bedroom 2 Light/switch"
+    name: "Bedroom 2 Light"
+    payload_on: "on"
+    payload_off: "off"
 
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret my_password
+  # api_password: PASSWORD
   # Uncomment this if you are using SSL or running in Docker etc
   # base_url: example.duckdns.org:8123
 
@@ -76,7 +77,7 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -102,12 +103,7 @@ mqtt:
   password: !secret mqtt_password
 
 
-switch:
-  - platform: command_line
-    switches:
-      sky_on_off: 
-        command_on: 'sky-remote-cli 192.168.0.3 sky'
-        command_off: 'sky-remote-cli 192.168.0.3 sky power'
+
 
 
 
@@ -134,76 +130,25 @@ sensor:
     - ping
     - download
     - upload
-  - platform: mqtt
-    name: "Bedroom Battery"
-    state_topic: "smartthings/Bedroom Temperature/battery"
-    unit_of_measurement: "%"
-    retain: true
-  - platform: mqtt
-    name: "Bedroom Temperature"
-    state_topic: "smartthings/Bedroom Temperature/temperature"
-    unit_of_measurement: "°C"
-    retain: true
-  - platform: mqtt
-    name: "Bedroom Humidity"
-    state_topic: "smartthings/Bedroom Temperature/humidity"
-    unit_of_measurement: "%"
-    retain: true
-  - platform: mqtt
-    name: "Fan Battery"
-    state_topic: "smartthings/Fan Temperature/battery"
-    unit_of_measurement: "%"
-    retain: true
-  - platform: mqtt
-    name: "Fan Temperature"
-    state_topic: "smartthings/Fan Temperature/temperature"
-    unit_of_measurement: "°C"
-    retain: true
-  - platform: mqtt
-    name: "Fan Humidity"
-    state_topic: "smartthings/Fan Temperature/humidity"
-    unit_of_measurement: "%"
-    retain: true
-  - platform: mqtt
-    name: "Hall Temperature"
-    state_topic: "smartthings/Hall Temperature/temperature"
-    unit_of_measurement: "°C"
-    retain: true
-  - platform: mqtt
-    name: "Hall Humidity"
-    state_topic: "smartthings/Hall Temperature/humidity"
-    unit_of_measurement: "%"
-    retain: true
-
 
 light:
-  - platform: hue
-    host: 192.168.0.14
   - platform: mqtt
     name: "Bedroom 2 Light"
     command_topic: "smartthings/Bedroom 2 Light/switch"  
     payload_on: "on"
     payload_off: "off"
     retain: true
-    state_topic: "smartthings/Bedroom 2 Light/switch"
-
+    state_topic: "smartthings/Bedroom 2 
 media_player:
   - platform: cast
     host: 192.168.0.6
+    name: "Livingroom Speaker"
   - platform: philips_js
     host: 192.168.0.11
-    name: "Livingroom TV"
+    name: "Livingroom TV2"
   - platform: roku
     host: 192.168.0.5
     name: "Livingroom NowTV"
-  - platform: roku
-    host: 192.168.0.36
-    name: 'Bedroom Roku'
-  - platform: philips_2016
-    name: 'Bedroom TV'
-    host: 192.168.0.13
-    username: !secret bedroom_tv_user
-    password: !secret bedroom_tv_password
 
 hive:
   username: !secret hive_username
@@ -246,16 +191,27 @@ input_select:
     initial: Livingroom
     icon: mdi:speaker-wireless
 
+script:
+  radio_player:
+    alias: Play Radio on Chromecast Audio
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.living_room
+          volume_level: '0.30'
+      - service: media_player.play_media
+        data_template:
+          entity_id: >
+            {% if is_state('input_select.chromecast_radio', 'Livingroom') %} media_player.living_room
+            {% endif %}
+          media_content_id: >
+            {% if is_state("input_select.radio_station", "BBC One") %} http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p
+            {% elif is_state("input_select.radio_station", "BBC Two") %} http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p
+            {% elif is_state("input_select.radio_station", "BBC Four") %} http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p
+            {% elif is_state("input_select.radio_station", "BBC 4 Extra") %} http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4extra_mf_p
+            {% endif %}
+          media_content_type: 'audio/mp4'
 
-
-
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
 
 group: !include groups.yaml
 automation: !include automations.yaml
-script: !include scripts.yaml

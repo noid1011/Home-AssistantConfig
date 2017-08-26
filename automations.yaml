@@ -1,0 +1,157 @@
+###################################################
+#                                                 #
+#   Send notification when porch door is opened   #
+#                                                 #
+###################################################
+- alias: 'auto_notify_porchdoor'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.porch_door
+    to: 'on'
+  action:
+    service: notify.mypushbullet
+    data:
+      title: "Porch Door"
+      message: "opened"
+
+
+###################################################
+#                                                 #
+#   Update input_boolean.nikhome, for state to    #
+#   change to away the porch door must have been  #
+#   opened within the last 5 min                  # 
+#                                                 #
+###################################################
+
+#### Nik
+- alias: 'auto_nik_away'
+  condition:
+    - condition: state
+      entity_id: input_boolean.porchdoor
+      state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.noid1011_nexus6
+      to: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.nikhome
+
+- alias: 'auto_nik_home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.noid1011_nexus6
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.nikhome
+      state: 'off'
+  action:
+     service: homeassistant.turn_on
+     entity_id: input_boolean.nikhome
+
+#### Michelle
+- alias: 'auto_michelle_away'
+  condition:
+    - condition: state
+      entity_id: input_boolean.porchdoor
+      state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.michellephone
+      to: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.michellehome
+
+- alias: 'auto_michelle_home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.michellephone
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.michellehome
+      state: 'off'
+  action:
+     service: homeassistant.turn_on
+     entity_id: input_boolean.michellehome
+
+###################################################
+#                                                 #
+#   use input_boolean.porch door to keep track    #
+#   if the porch door has been opened in the      #
+#   last 5 minutes, used for presence detection   #
+#                                                 #
+###################################################
+- alias: 'auto_porchdoor_open'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.porch_door
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.porchdoor
+
+- alias: 'auto_porchdoor_timer'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.porchdoor
+      to: 'on'
+      for:
+        minutes: 10
+  action:
+    service: homeassistant.turn_off
+    entity_id: input_boolean.porchdoor
+
+
+##################################
+
+- alias: 'Update Notifications'
+  trigger:
+    - platform: state
+      entity_id: updater.updater
+  action:
+    service: notify.pushbullet
+    data_template:
+      title: 'New Home Assistant Release'
+#      target: 'YOUR_TARGET_HERE' 
+#See Pushbullet component for usage
+      message: "Home Assistant  {{ states.updater.updater.state }}  is now available."
+
+
+##################################
+#
+# Dining room light copy livingroom
+#
+##################################
+
+- alias: 'Dining Room Lights'
+  trigger:
+    - platform: state
+      entity_id: light.living_room
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.dining_room
+
+- alias: 'Dining Room Lights'
+  trigger:
+    - platform: state
+      entity_id: light.living_room
+      to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.dining_room
+
+#- alias 'morning_radio'
+#  trigger:
+#    - platform: state
+#      entity_id: light.living_room
+#      to: 'on'
+#    condition:
+#      condition: time
+#      before: '07:45:00'
+#    action:
+#      service: homeassistant.turn_on
+#      entity_id: script.radio_player

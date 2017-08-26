@@ -13,10 +13,16 @@ Network:
   - group.pihole
   - group.speedtest
 
-#Media:
-#  view: yes
-#  entities:
-  
+Media:
+  view: yes
+  entities:
+  - media_player.livingroom_tv
+  - group.radio
+
+Backend:
+  view: yes
+  entities:
+  - group.automation
 
 ##########################################
 #
@@ -24,11 +30,28 @@ Network:
 #
 ##########################################
 
+automation:
+  name: Automations
+  entities:
+  - automation.auto_michelle_away
+  - automation.auto_michelle_home
+  - automation.auto_nik_away
+  - automation.auto_nik_home
+  - automation.auto_notify_porchdoor
+  - automation.auto_porchdoor_open
+  - automation.auto_porchdoor_timer
+  - automation.update_notifications
+
 temperatures:
   name: Temperatures
   entities:
   - sensor.hive_current_temperature
   - sensor.porch_temperature
+
+zones:
+  name: Zones
+  entities:
+  - binary_sensor.floorplan
 
 
 pihole:
@@ -43,11 +66,14 @@ pihole:
   - sensor.pihole_dns_unique_domains
   - sensor.pihole_domains_blocked
 
-people:
+trackers:
   name: People
   entities:
-  - device_tracker.nikphone
+  - device_tracker.noid1011_nexus6
   - device_tracker.michellephone
+  - device_tracker.mumstablet
+  - device_tracker.stephiphone
+  - device_tracker.caitlinphone
 
 doors:
   name: Doors
@@ -66,9 +92,14 @@ hardware:
   - device_tracker.tv_livingroom
   - device_tracker.speaker_livingroom
   - device_tracker.nowtv_livingroom
-  - device_tracker.bedroom_tv
+  - device_tracker.tv_bedroom
   - device_tracker.bt_wifi_link
   - device_tracker.smartthings_hub
+  - device_tracker.bedroom_nowtv
+  - device_tracker.firetv
+  - device_tracker.hivehub
+  - device_tracker.skytv
+
 
 hive_heating:
   name: Hive Heating
@@ -91,7 +122,7 @@ radio:
   entities:
   - input_select.radio_station
   - input_select.chromecast_radio
-  - script.radio538
+  - script.radio_player
 
 speedtest:
   name: speedtest
@@ -99,3 +130,8 @@ speedtest:
   - sensor.speedtest_ping
   - sensor.speedtest_download
   - sensor.speedtest_upload
+
+batteries:
+  name: Battery Levels
+  entities:
+  - sensor.porch_battery
