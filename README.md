@@ -1,17 +1,30 @@
 # Adguard Setup
 
-backup: cp /etc/AdGuardHome/config.yaml /etc/AdGuardHome/config.yaml.back
-add user to config.yaml
+Install nano:
+```
+opkg update && opkg install nano
+```
+Backup config: 
+```
+cp /etc/AdGuardHome/config.yaml /etc/AdGuardHome/config.yaml.back
+```
+Add user to config.yaml
 ```
 users:
   - name: <User name>
     password: <BCrypt-encrypted password> # https://bcrypt-generator.com/
 ```
 
-allow update: /etc/init.d/adguardhome and delete --no-check-update
+Allow update: 
+```
+nano /etc/init.d/adguardhome # delete --no-check-update
+```
 
-stop port 3000 redirect:
+Stop port 3000 redirect:
 ```
 sed -i 's/--glinet//g' /etc/init.d/adguardhome
+```
+Restart adguard:
+```
 /etc/init.d/adguardhome restart
 ```
